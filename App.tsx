@@ -1,13 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { data } from './constants';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { TodoItem } from './components/TaskItem';
 import { TTodoItem } from './types';
 import { AddTodo } from './components/AddTodo/AddTodo';
 
 export default function App() {
-  const [todoList, setTodoList] = useState(data ?? []);
+  const [todoList, setTodoList] = useState<TTodoItem[]>([]);
+
+  useEffect(() => {
+    const getTodos = () => {
+      fetch('https://jsonplaceholder.typicode.com/todos')
+        .then((response) => response.json())
+        .then((data) => setTodoList(data));
+    };
+
+    getTodos();
+  }, []);
 
   const toggleTodoComplete = (id: string) => {
     const foundTodo = todoList.find((todo) => todo.id === id);
@@ -33,16 +43,18 @@ export default function App() {
     <View style={styles.container}>
       <Text>Todo App</Text>
       <AddTodo add={add} />
-      <View style={styles.todoList}>
-        {todoList.map((todo, idx) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            index={idx + 1}
-            toggleTodo={() => toggleTodoComplete(todo.id)}
-          />
-        ))}
-      </View>
+      {todoList.length ? (
+        <View style={styles.todoList}>
+          {todoList.map((todo, idx) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              index={idx + 1}
+              toggleTodo={() => toggleTodoComplete(todo.id)}
+            />
+          ))}
+        </View>
+      ) : null}
       <StatusBar style='auto' />
     </View>
   );
@@ -59,6 +71,7 @@ const styles = StyleSheet.create({
     border: '1px solid black',
   },
   todoList: {
-    height: '100%',
+    display: 'flex',
+    gap: 10,
   },
 });
