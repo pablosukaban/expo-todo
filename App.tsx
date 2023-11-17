@@ -5,56 +5,34 @@ import { FC, useEffect, useState } from 'react';
 import { TodoItem } from './components/TaskItem';
 import { TTodoItem } from './types';
 import { AddTodo } from './components/AddTodo/AddTodo';
+import { TodoStore } from './store';
+import { observer } from 'mobx-react';
 
-export default function App() {
-  const [todoList, setTodoList] = useState<TTodoItem[]>([]);
+function App() {
+  const [todoStore] = useState(() => new TodoStore());
 
-  useEffect(() => {
-    const getTodos = () => {
-      fetch('https://jsonplaceholder.typicode.com/todos')
-        .then((response) => response.json())
-        .then((data) => setTodoList(data));
-    };
-
-    getTodos();
-  }, []);
-
-  const toggleTodoComplete = (id: string) => {
-    const foundTodo = todoList.find((todo) => todo.id === id);
-
-    if (!foundTodo) return;
-
-    const newTodoList = todoList.map((item) => {
-      if (item.id !== foundTodo.id) return item;
-      return {
-        ...item,
-        completed: !item.completed,
-      };
-    });
-
-    setTodoList(newTodoList);
-  };
-
-  const add = (todo: TTodoItem) => {
-    setTodoList((prev) => [todo, ...prev]);
-  };
+  const { todoList, isLoading, error, toggleTodoComplete, add } = todoStore;
 
   return (
     <View style={styles.container}>
       <Text>Todo App</Text>
       <AddTodo add={add} />
-      {todoList.length ? (
-        <View style={styles.todoList}>
-          {todoList.map((todo, idx) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              index={idx + 1}
-              toggleTodo={() => toggleTodoComplete(todo.id)}
-            />
-          ))}
-        </View>
-      ) : null}
+      <View style={styles.todoList}>
+        {!isLoading ? (
+          <>
+            {todoList?.map((todo, idx) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                index={idx + 1}
+                toggleTodo={() => toggleTodoComplete(todo.id)}
+              />
+            ))}
+          </>
+        ) : (
+          <Text>Loading...</Text>
+        )}
+      </View>
       <StatusBar style='auto' />
     </View>
   );
@@ -75,3 +53,5 @@ const styles = StyleSheet.create({
     gap: 10,
   },
 });
+
+export default observer(App);
