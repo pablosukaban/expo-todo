@@ -25,20 +25,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    // justifyContent: 'space-between',
     padding: 20,
     margin: 20,
     gap: 20,
     border: '1px solid black',
   },
   todoList: {
-    // width: '100%',
     height: '100%',
-  },
-  todoItem: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 30,
   },
 });
