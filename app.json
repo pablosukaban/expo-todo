@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "expo-todo-app",
-    "slug": "expo-todo-app",
+    "slug": "todo-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "02a9c5d8-27a0-4671-92e0-f4b6c881726f"
+      }
+    },
+    "owner": "pablosukaban"
   }
 }
