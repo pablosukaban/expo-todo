@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { data } from './constants';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { TodoItem } from './components/TaskItem';
+import { TTodoItem } from './types';
+import { AddTodo } from './components/AddTodo/AddTodo';
 
 export default function App() {
   const [todoList, setTodoList] = useState(data ?? []);
@@ -23,15 +25,21 @@ export default function App() {
     setTodoList(newTodoList);
   };
 
+  const add = (todo: TTodoItem) => {
+    setTodoList((prev) => [todo, ...prev]);
+  };
+
   return (
     <View style={styles.container}>
       <Text>Todo App</Text>
+      <AddTodo add={add} />
       <View style={styles.todoList}>
-        {todoList.map((task) => (
+        {todoList.map((todo, idx) => (
           <TodoItem
-            key={task.id}
-            todo={task}
-            toggleTodo={() => toggleTodoComplete(task.id)}
+            key={todo.id}
+            todo={todo}
+            index={idx + 1}
+            toggleTodo={() => toggleTodoComplete(todo.id)}
           />
         ))}
       </View>

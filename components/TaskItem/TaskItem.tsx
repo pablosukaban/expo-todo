@@ -4,13 +4,15 @@ import { FC } from 'react';
 import { TTodoItem } from '../../types';
 
 type TodoItemProps = {
+  index: number;
   todo: TTodoItem;
   toggleTodo: (id: string) => void;
 };
 
-export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo }) => {
+export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo, index }) => {
   return (
     <View style={styles.todoItem}>
+      <Text>{index}.</Text>
       <CheckBox value={todo.completed} onChange={() => toggleTodo(todo.id)} />
       <Text>{todo.title}</Text>
     </View>
