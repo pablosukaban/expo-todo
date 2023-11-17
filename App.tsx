@@ -1,18 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { todoTasks } from './constants';
-import CheckBox from 'expo-checkbox';
-import { FC, useState } from 'react';
-import { TTodoItem } from './types';
+import { StyleSheet, Text, View } from 'react-native';
+import { data } from './constants';
+import { useState } from 'react';
 import { TodoItem } from './components/TaskItem';
 
 export default function App() {
+  const [todoList, setTodoList] = useState(data ?? []);
+
+  const toggleTodoComplete = (id: string) => {
+    const foundTodo = todoList.find((todo) => todo.id === id);
+
+    if (!foundTodo) return;
+
+    const newTodoList = todoList.map((item) => {
+      if (item.id !== foundTodo.id) return item;
+      return {
+        ...item,
+        completed: !item.completed,
+      };
+    });
+
+    setTodoList(newTodoList);
+  };
+
   return (
     <View style={styles.container}>
       <Text>Todo App</Text>
       <View style={styles.todoList}>
-        {todoTasks.map((task) => (
-          <TodoItem key={task.id} task={task} />
+        {todoList.map((task) => (
+          <TodoItem
+            key={task.id}
+            todo={task}
+            toggleTodo={() => toggleTodoComplete(task.id)}
+          />
         ))}
       </View>
       <StatusBar style='auto' />

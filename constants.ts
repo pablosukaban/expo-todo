@@ -1,23 +1,23 @@
 import { TTodoItem } from './types';
 
-export const todoTasks: TTodoItem[] = [
+export const data: TTodoItem[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Learn React Native',
     completed: false,
   },
   {
-    id: 2,
+    id: '2',
     title: 'Learn React',
     completed: true,
   },
   {
-    id: 3,
+    id: '3',
     title: 'Learn JavaScript',
     completed: false,
   },
   {
-    id: 4,
+    id: '4',
     title: 'Learn GraphQL',
     completed: false,
   },

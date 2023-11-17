@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import CheckBox from 'expo-checkbox';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { TTodoItem } from '../../types';
 
 type TodoItemProps = {
-  task: TTodoItem;
+  todo: TTodoItem;
+  toggleTodo: (id: string) => void;
 };
 
-export const TodoItem: FC<TodoItemProps> = ({ task }) => {
-  const [value, setValue] = useState(task.completed ?? false);
-
+export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo }) => {
   return (
     <View style={styles.todoItem}>
-      <CheckBox value={value} onChange={() => setValue((prev) => !prev)} />
-      <Text>{task.title}</Text>
+      <CheckBox value={todo.completed} onChange={() => toggleTodo(todo.id)} />
+      <Text>{todo.title}</Text>
     </View>
   );
 };
