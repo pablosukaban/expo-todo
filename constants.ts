@@ -1,4 +1,6 @@
-export const todoTasks = [
+import { TTodoItem } from './types';
+
+export const todoTasks: TTodoItem[] = [
   {
     id: 1,
     title: 'Learn React Native',
