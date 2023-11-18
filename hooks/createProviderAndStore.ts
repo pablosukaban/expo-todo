@@ -1,8 +1,9 @@
 import { createContext, useContext } from 'react';
-import { TodoStore } from '../store';
 
-export const createProviderAndStore = <TodoStore>() => {
-  const store = new TodoStore();
+export const createProviderAndStore = <T extends new () => any>(
+  storeClass: T
+) => {
+  const store = new storeClass();
 
   const StoreContext = createContext(store);
 

@@ -69,4 +69,4 @@ export class TodoStore {
   };
 }
 
-export const { Provider, useStore } = createProviderAndStore<TodoStore>();
+export const { Provider, useStore } = createProviderAndStore(TodoStore);
