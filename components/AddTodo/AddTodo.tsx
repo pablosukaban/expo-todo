@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
+    width: '100%',
     gap: 5,
   },
   input: {
@@ -47,5 +48,6 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     padding: 10,
     borderRadius: 5,
+    width: '100%',
   },
 });
