@@ -9,13 +9,13 @@ import { Provider, TodoStore } from './store';
 function App() {
   const [todoStore] = useState(() => new TodoStore());
 
-  const { isLoading, add } = todoStore;
+  const { isLoading } = todoStore;
 
   return (
     <Provider value={todoStore}>
       <View style={styles.container}>
         <Text>Todo App</Text>
-        <AddTodo add={add} />
+        <AddTodo />
         {!isLoading ? <TodoList /> : <Text>Loading...</Text>}
         <StatusBar style='auto' />
       </View>

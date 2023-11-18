@@ -2,13 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { FC, useState } from 'react';
 import { TTodoItem } from '../../types';
+import { useStore } from '../../store';
+import { observer } from 'mobx-react';
 
-type AddTodoProps = {
-  add: (todo: TTodoItem) => void;
-};
-
-export const AddTodo: FC<AddTodoProps> = ({ add }) => {
+export const AddTodo: FC = observer(() => {
   const [inputValue, setInputValue] = useState('');
+
+  const { add } = useStore();
 
   const handleAddClick = () => {
     if (!inputValue) return;
@@ -33,7 +33,7 @@ export const AddTodo: FC<AddTodoProps> = ({ add }) => {
       <Button title='Add' onPress={handleAddClick} />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
