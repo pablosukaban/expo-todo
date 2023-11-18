@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { TTodoItem } from '../types';
 import axios from 'axios';
+import { createProviderAndStore } from '../hooks/createProviderAndStore';
 
 const URL = 'https://jsonplaceholder.typicode.com/todos';
 
@@ -67,3 +68,5 @@ export class TodoStore {
     this.todoList = [todo, ...this.todoList];
   };
 }
+
+export const { Provider, useStore } = createProviderAndStore<TodoStore>();

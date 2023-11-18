@@ -1,40 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { data } from './constants';
-import { FC, useEffect, useState } from 'react';
-import { TodoItem } from './components/TaskItem';
-import { TTodoItem } from './types';
-import { AddTodo } from './components/AddTodo/AddTodo';
-import { TodoStore } from './store';
 import { observer } from 'mobx-react';
+import { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { AddTodo } from './components/AddTodo/AddTodo';
+import { TodoList } from './components/TodoList/';
+import { Provider, TodoStore } from './store';
 
 function App() {
   const [todoStore] = useState(() => new TodoStore());
 
-  const { todoList, isLoading, error, toggleTodoComplete, add } = todoStore;
+  const { isLoading, add } = todoStore;
 
   return (
-    <View style={styles.container}>
-      <Text>Todo App</Text>
-      <AddTodo add={add} />
-      <View style={styles.todoList}>
-        {!isLoading ? (
-          <>
-            {todoList?.map((todo, idx) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                index={idx + 1}
-                toggleTodo={() => toggleTodoComplete(todo.id)}
-              />
-            ))}
-          </>
-        ) : (
-          <Text>Loading...</Text>
-        )}
+    <Provider value={todoStore}>
+      <View style={styles.container}>
+        <Text>Todo App</Text>
+        <AddTodo add={add} />
+        {!isLoading ? <TodoList /> : <Text>Loading...</Text>}
+        <StatusBar style='auto' />
       </View>
-      <StatusBar style='auto' />
-    </View>
+    </Provider>
   );
 }
 
@@ -47,10 +32,6 @@ const styles = StyleSheet.create({
     // margin: 20,
     gap: 20,
     border: '1px solid black',
-  },
-  todoList: {
-    display: 'flex',
-    gap: 10,
   },
 });
 
