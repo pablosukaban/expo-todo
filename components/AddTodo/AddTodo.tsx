@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, TextInput, View } from 'react-native';
-import { FC, useState } from 'react';
-import { TTodoItem } from '../../types';
-import { useStore } from '../../store';
 import { observer } from 'mobx-react';
+import { FC, useState } from 'react';
+import { Text, StyleSheet, TextInput, View, Pressable } from 'react-native';
+import { useStore } from '../../store';
+import { TTodoItem } from '../../types';
 
 export const AddTodo: FC = observer(() => {
   const [inputValue, setInputValue] = useState('');
@@ -29,8 +28,23 @@ export const AddTodo: FC = observer(() => {
         style={styles.input}
         value={inputValue}
         onChangeText={(text) => setInputValue(text)}
+        placeholder='Add new todo'
+        placeholderTextColor='gray'
+        autoCapitalize='sentences'
+        autoCorrect={false}
+        clearButtonMode='always'
+        returnKeyType='done'
+        onSubmitEditing={handleAddClick}
+        selectTextOnFocus
       />
-      <Button title='Add' onPress={handleAddClick} />
+      <Pressable
+        style={styles.button}
+        onPress={handleAddClick}
+        hitSlop={10}
+        accessibilityRole='button'
+      >
+        <Text style={styles.buttonText}>Add</Text>
+      </Pressable>
     </View>
   );
 });
@@ -49,5 +63,15 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     width: '100%',
+  },
+  button: {
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgb(0, 150, 136)',
+    textAlign: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    textTransform: 'uppercase',
   },
 });
