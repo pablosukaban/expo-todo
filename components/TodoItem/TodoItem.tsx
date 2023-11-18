@@ -12,9 +12,10 @@ type TodoItemProps = {
 export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo, index }) => {
   return (
     <View style={styles.todoItem}>
-      <Text>{index}.</Text>
       <CheckBox value={todo.completed} onChange={() => toggleTodo(todo.id)} />
-      <Text>{todo.title}</Text>
+      <Text>
+        {index}. {todo.title}
+      </Text>
     </View>
   );
 };
