@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 export const createProviderAndStore = <
-  T extends new () => any,
+  T extends new () => unknown,
   S extends InstanceType<T>
 >(
   storeClass: T
@@ -15,7 +15,7 @@ export const createProviderAndStore = <
     if (!store) {
       throw new Error('Store not found');
     }
-    return store;
+    return store as S;
   };
 
   return {

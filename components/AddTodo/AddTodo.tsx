@@ -4,6 +4,8 @@ import { Text, StyleSheet, TextInput, View, Pressable } from 'react-native';
 import { useStore } from '../../store';
 import { TTodoItem } from '../../types';
 
+import React from 'react';
+
 export const AddTodo: FC = observer(() => {
   const [inputValue, setInputValue] = useState('');
 

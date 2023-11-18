@@ -26,7 +26,7 @@ export class TodoStore {
     try {
       const { data } = await axios.get(URL, {
         params: {
-          _limit: 10,
+          _limit: 50,
         },
       });
 

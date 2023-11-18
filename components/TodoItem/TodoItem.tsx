@@ -3,6 +3,8 @@ import CheckBox from 'expo-checkbox';
 import { FC } from 'react';
 import { TTodoItem } from '../../types';
 
+import React from 'react';
+
 type TodoItemProps = {
   index: number;
   todo: TTodoItem;

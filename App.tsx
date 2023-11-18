@@ -6,6 +6,8 @@ import { AddTodo } from './components/AddTodo/AddTodo';
 import { TodoList } from './components/TodoList/';
 import { Provider, TodoStore } from './store';
 
+import React from 'react';
+
 function App() {
   const [todoStore] = useState(() => new TodoStore());
 

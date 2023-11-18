@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
 import { TodoItem } from '../TodoItem';
 
+import React from 'react';
+
 export const TodoList = observer(() => {
   const { todoList, toggleTodoComplete } = useStore();
 
