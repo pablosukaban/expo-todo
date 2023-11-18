@@ -21,10 +21,8 @@ export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo, index }) => {
 
 const styles = StyleSheet.create({
   todoItem: {
-    display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
     gap: 30,
-    flex: 1,
   },
 });
