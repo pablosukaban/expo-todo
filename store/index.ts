@@ -1,9 +1,10 @@
-import { makeAutoObservable, runInAction } from 'mobx';
-import { TTodoItem } from '../types';
-import axios from 'axios';
-import { createProviderAndStore } from '../hooks/createProviderAndStore';
+import { makeAutoObservable, runInAction } from "mobx";
+import axios from "axios";
 
-const URL = 'https://jsonplaceholder.typicode.com/todos';
+import { TTodoItem } from "../types";
+import { createProviderAndStore } from "../hooks/createProviderAndStore";
+
+const URL = "https://jsonplaceholder.typicode.com/todos";
 
 export class TodoStore {
   todoList: TTodoItem[] | null = null;
@@ -40,7 +41,7 @@ export class TodoStore {
       });
     } catch (error) {
       runInAction(() => {
-        this.error = 'Something went wrong';
+        this.error = "Something went wrong";
         this.isLoading = false;
       });
     }

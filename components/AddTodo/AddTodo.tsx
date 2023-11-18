@@ -1,13 +1,14 @@
-import { observer } from 'mobx-react';
-import { FC, useState } from 'react';
-import { Text, StyleSheet, TextInput, View, Pressable } from 'react-native';
-import { useStore } from '../../store';
-import { TTodoItem } from '../../types';
+import { observer } from "mobx-react";
+import { FC, useState } from "react";
+import { Text, StyleSheet, TextInput, View, Pressable } from "react-native";
+import React from "react";
 
-import React from 'react';
+import { useStore } from "../../store";
+import { TTodoItem } from "../../types";
+
 
 export const AddTodo: FC = observer(() => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const { add } = useStore();
 
@@ -21,7 +22,7 @@ export const AddTodo: FC = observer(() => {
     };
 
     add(newTodo);
-    setInputValue('');
+    setInputValue("");
   };
 
   return (
@@ -30,12 +31,12 @@ export const AddTodo: FC = observer(() => {
         style={styles.input}
         value={inputValue}
         onChangeText={(text) => setInputValue(text)}
-        placeholder='Add new todo'
-        placeholderTextColor='gray'
-        autoCapitalize='sentences'
+        placeholder="Add new todo"
+        placeholderTextColor="gray"
+        autoCapitalize="sentences"
         autoCorrect={false}
-        clearButtonMode='always'
-        returnKeyType='done'
+        clearButtonMode="always"
+        returnKeyType="done"
         onSubmitEditing={handleAddClick}
         selectTextOnFocus
       />
@@ -43,7 +44,7 @@ export const AddTodo: FC = observer(() => {
         style={styles.button}
         onPress={handleAddClick}
         hitSlop={10}
-        accessibilityRole='button'
+        accessibilityRole="button"
       >
         <Text style={styles.buttonText}>Add</Text>
       </Pressable>
@@ -53,27 +54,27 @@ export const AddTodo: FC = observer(() => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
     gap: 5,
   },
   input: {
     borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'black',
+    borderStyle: "solid",
+    borderColor: "black",
     padding: 10,
     borderRadius: 5,
-    width: '100%',
+    width: "100%",
   },
   button: {
     padding: 10,
     borderRadius: 5,
-    backgroundColor: 'rgb(0, 150, 136)',
-    textAlign: 'center',
+    backgroundColor: "rgb(0, 150, 136)",
+    textAlign: "center",
   },
   buttonText: {
-    color: 'white',
-    textTransform: 'uppercase',
+    color: "white",
+    textTransform: "uppercase",
   },
 });

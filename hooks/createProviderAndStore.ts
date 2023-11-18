@@ -1,10 +1,10 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
 export const createProviderAndStore = <
   T extends new () => unknown,
-  S extends InstanceType<T>
+  S extends InstanceType<T>,
 >(
-  storeClass: T
+  storeClass: T,
 ) => {
   const store = new storeClass();
 
@@ -13,7 +13,7 @@ export const createProviderAndStore = <
   const useStore = (): S => {
     const store = useContext(StoreContext);
     if (!store) {
-      throw new Error('Store not found');
+      throw new Error("Store not found");
     }
     return store as S;
   };

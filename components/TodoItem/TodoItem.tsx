@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
-import CheckBox from 'expo-checkbox';
-import { FC } from 'react';
-import { TTodoItem } from '../../types';
+import { StyleSheet, Text, View } from "react-native";
+import CheckBox from "expo-checkbox";
+import { FC } from "react";
+import React from "react";
 
-import React from 'react';
+import { TTodoItem } from "../../types";
+
 
 type TodoItemProps = {
   index: number;
@@ -27,12 +28,12 @@ export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo, index }) => {
 
 const styles = StyleSheet.create({
   todoItem: {
-    alignItems: 'center',
-    flexDirection: 'row',
+    alignItems: "center",
+    flexDirection: "row",
     gap: 30,
   },
   todoTextCompleted: {
-    textDecorationLine: 'line-through',
-    color: 'gray',
+    textDecorationLine: "line-through",
+    color: "gray",
   },
 });

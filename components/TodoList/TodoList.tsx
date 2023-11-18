@@ -1,9 +1,10 @@
-import { observer } from 'mobx-react';
-import { StyleSheet, View } from 'react-native';
-import { useStore } from '../../store';
-import { TodoItem } from '../TodoItem';
+import { observer } from "mobx-react";
+import { StyleSheet, View } from "react-native";
+import React from "react";
 
-import React from 'react';
+import { useStore } from "../../store";
+import { TodoItem } from "../TodoItem";
+
 
 export const TodoList = observer(() => {
   const { todoList, toggleTodoComplete } = useStore();
