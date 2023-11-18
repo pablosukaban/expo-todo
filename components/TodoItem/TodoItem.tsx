@@ -12,8 +12,11 @@ type TodoItemProps = {
 export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo, index }) => {
   return (
     <View style={styles.todoItem}>
-      <CheckBox value={todo.completed} onChange={() => toggleTodo(todo.id)} />
-      <Text>
+      <CheckBox
+        value={todo.completed}
+        onValueChange={() => toggleTodo(todo.id)}
+      />
+      <Text style={todo.completed ? styles.todoTextCompleted : undefined}>
         {index}. {todo.title}
       </Text>
     </View>
@@ -25,5 +28,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     gap: 30,
+  },
+  todoTextCompleted: {
+    textDecorationLine: 'line-through',
+    color: 'gray',
   },
 });
