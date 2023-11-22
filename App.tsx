@@ -17,7 +17,7 @@ function App() {
   return (
     <Provider value={todoStore}>
       <View style={styles.container}>
-        <Text>Todo App</Text>
+        {/* <Text>Todo App</Text> */}
         <AddTodo />
         {!isLoading ? <TodoList /> : <Text>Loading...</Text>}
         <StatusBar style="auto" />
@@ -32,9 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     padding: 50,
-    // margin: 20,
     gap: 20,
-    border: "1px solid black",
   },
 });
 
