@@ -6,11 +6,11 @@ import { useStore } from "../../store";
 import { TodoItem } from "../TodoItem";
 
 export const TodoList = observer(() => {
-  const { todoList, toggleTodoComplete } = useStore();
+  const { filteredTodoList, toggleTodoComplete } = useStore();
 
   return (
     <FlatList
-      data={todoList}
+      data={filteredTodoList}
       contentContainerStyle={styles.todoList}
       showsVerticalScrollIndicator={false}
       renderItem={({ item, index }) => (

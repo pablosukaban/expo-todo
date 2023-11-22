@@ -8,6 +8,7 @@ const URL = "https://jsonplaceholder.typicode.com/todos";
 
 export class TodoStore {
   todoList: TTodoItem[] | null = null;
+  query = "";
   error: string | null = null;
   isLoading = false;
 
@@ -68,6 +69,37 @@ export class TodoStore {
 
     this.todoList = [todo, ...this.todoList];
   };
+
+  setQuery = (query: string) => {
+    this.query = query;
+  };
+
+  get filteredTodoList() {
+    if (!this.todoList) return [];
+
+    return this.todoList.filter((todo) => {
+      const title = todo.title.toLowerCase();
+      const query = this.query.toLowerCase();
+
+      return title.includes(query);
+    });
+  }
+
+  // filterByQuery = (searchQuery: string) => {
+  //   if (!this.todoList) return;
+
+  //   if (!searchQuery) {
+  //     this.todoList = null;
+  //     return;
+  //   }
+
+  //   this.todoList = this.todoList.filter((todo) => {
+  //     const title = todo.title.toLowerCase();
+  //     const query = searchQuery.toLowerCase();
+
+  //     return title.includes(query);
+  //   });
+  // };
 }
 
 export const { Provider, useStore } = createProviderAndStore(TodoStore);
