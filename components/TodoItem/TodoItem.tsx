@@ -5,7 +5,6 @@ import React from "react";
 
 import { TTodoItem } from "../../types";
 
-
 type TodoItemProps = {
   index: number;
   todo: TTodoItem;
@@ -19,7 +18,12 @@ export const TodoItem: FC<TodoItemProps> = ({ todo, toggleTodo, index }) => {
         value={todo.completed}
         onValueChange={() => toggleTodo(todo.id)}
       />
-      <Text style={todo.completed ? styles.todoTextCompleted : undefined}>
+      <Text
+        style={[
+          styles.todoText,
+          todo.completed ? styles.todoTextCompleted : undefined,
+        ]}
+      >
         {index}. {todo.title}
       </Text>
     </View>
@@ -31,6 +35,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 30,
+  },
+  todoText: {
+    fontSize: 20,
+    color: "black",
   },
   todoTextCompleted: {
     textDecorationLine: "line-through",
