@@ -6,7 +6,6 @@ import React from "react";
 import { useStore } from "../../store";
 import { TTodoItem } from "../../types";
 
-
 export const AddTodo: FC = observer(() => {
   const [inputValue, setInputValue] = useState("");
 
@@ -54,9 +53,7 @@ export const AddTodo: FC = observer(() => {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flexDirection: "row",
-    width: "100%",
     gap: 5,
   },
   input: {
@@ -66,15 +63,22 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     width: "100%",
+
+    fontSize: 18,
   },
   button: {
     padding: 10,
     borderRadius: 5,
     backgroundColor: "rgb(0, 150, 136)",
     textAlign: "center",
+
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
     textTransform: "uppercase",
+    fontSize: 18,
   },
 });
